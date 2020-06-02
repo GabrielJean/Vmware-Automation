@@ -1,0 +1,8 @@
+- hosts: all
+  order: sorted
+  become: yes
+  tasks:
+    - name: Making sure user "template" is absent
+      user:
+        name: template
+        state: absent

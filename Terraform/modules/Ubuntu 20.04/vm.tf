@@ -23,11 +23,11 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "terraform-test"
+  name             = "${var.vsphere_virtual_machine_name}"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
 
-  num_cpus = 2
+  num_cpus = 1
   memory   = 1024
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
 
@@ -39,7 +39,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   disk {
-    label            = "disk0"
+    label            = "${var.vsphere_virtual_machine_name}.vmdk"
     size             = "${data.vsphere_virtual_machine.template.disks.0.size}"
     eagerly_scrub    = "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
     thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
@@ -54,12 +54,12 @@ resource "vsphere_virtual_machine" "vm" {
     customize {
       dns_server_list = ["10.0.0.5"]
       linux_options {
-        host_name = "terraform-test"
-        domain    = "test.internal"
+        host_name = "${var.vsphere_virtual_machine_name}"
+        domain    = "ad.gwebs.ca"
       }
 
       network_interface {
-        ipv4_address = "10.0.0.50"
+        ipv4_address = "${var.vsphere_virtual_machine_ip}"
         ipv4_netmask = 23
       }
 

@@ -1,0 +1,25 @@
+version: "2"
+
+services:
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: nginx_letsencrypt
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Toronto
+      - URL=gwebs.ca
+      - SUBDOMAINS=nextcloud
+      - VALIDATION=http
+      - DHLEVEL=2048 #optional
+      - ONLY_SUBDOMAINS=false #optional
+      # - EXTRA_DOMAINS=com2kube.com #optional
+      - STAGING=true #optional
+    volumes:
+      - ./nginx.conf:/config/nginx/site-confs/default
+    ports:
+      - 443:443
+      - 80:80 #optional
+    restart: unless-stopped

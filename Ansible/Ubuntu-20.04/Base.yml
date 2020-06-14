@@ -2,7 +2,17 @@
   order: sorted
   become: yes
   tasks:
-    - name: Making sure user "template" is absent
+    - name: Create Gabriel user
       user:
-        name: template
-        state: absent
+        name: gabriel
+        state: present
+        shell: /bin/bash
+        groups: sudo
+        append: yes
+
+    - name: Set authorized key taken from file
+      authorized_key:
+        user: gabriel
+        state: present
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxR1gFp9WyVAu7QcBfisc1Ok0F2TVBNYiQlpsD3oHrY0KbtgSqTqKcC0mIhptLKPk0lsfTgnqMQiEe3vCNI8Y8uMuS+/v3rmUf/avNL4hFwpEeHs3czPbw1wgS7bLGTElriqgW7EqlX8DCSDbjnYvBflGQSL/6fYkneJf478wYHXJA/NwEACJMInhZhjwPIZmMoxEF+2D9p5g3jQbxKEcEcHDYCzTLqmCMrpq8lutxApaphLrBdO1YqYMIZCmJ/r91pnpRYDg4KI6xzsxB+eModPMFwqXgmKs7lf/69RQiE8+rf1lCfXj2eVea6cV/1UJKPpziyiyqPRVsiB49sP8urhk1HXl5ZqKzqwL55N7+pzJB492suwcfc5xLW+TotFiCRiX/7ZDbkURd+NKKIoOBLcmUJ9bW7qEPP2iVf+6O2/SlTioJ0wvf875kSqjxKKFXaG13E2LhA8r0Zq+fjvKAVWWICPchUNsz7RWsQKhuSKnYDYO7m79KHqPnzX3L+sk="
+      

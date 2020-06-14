@@ -23,6 +23,16 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
+
+  provisioner "local-exec" {
+    command = "sudo sed -i '/[${var.vsphere_virtual_machine_ansiblegroup}]/a ${var.vsphere_virtual_machine_ip}' input"
+  }
+
+  provisioner "local-exec" {
+    when = "destroy"
+    command = "sudo sed -i '/${var.vsphere_virtual_machine_ip}/d' input "
+  }
+
   name             = "${var.vsphere_virtual_machine_name}"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"

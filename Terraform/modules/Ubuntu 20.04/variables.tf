@@ -13,3 +13,7 @@ variable "vsphere_virtual_machine_Datastore" {
   type        = string
 }
 
+variable "vsphere_virtual_machine_ansiblegroup" {
+  description = "The name to use for all the cluster resources"
+  type        = string
+}

@@ -3,7 +3,7 @@ data "vsphere_datacenter" "dc" {
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "ehq01-DT"
+  name          = "${var.vsphere_virtual_machine_Datastore}"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 

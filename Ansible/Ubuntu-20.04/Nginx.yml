@@ -2,9 +2,8 @@
 # - name: Import docker playbook
 # include_tasks: Docker.yml
 - hosts: nginx
-
-- name: Include a play after another play
-  include_tasks: ./Tasks/Docker.yaml
+  tasks:
+    - include_tasks: ./Tasks/Docker.yaml
 
 - hosts: nginx
   order: sorted

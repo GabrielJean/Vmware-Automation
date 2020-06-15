@@ -29,8 +29,12 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   provisioner "local-exec" {
+    command = "ansible-playbook ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_ansiblegroup}"
+  }
+
+  provisioner "local-exec" {
     when = "destroy"
-    command = "sudo sed -i '/${var.vsphere_virtual_machine_ip}/d' input "
+    command = "sudo sed -i '/${var.vsphere_virtual_machine_ip}/d' /etc/ansible/hosts "
   }
 
   name             = "${var.vsphere_virtual_machine_name}"

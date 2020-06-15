@@ -2,6 +2,7 @@
 # - name: Import docker playbook
 # include_tasks: Docker.yml
 - hosts: nginx
+  become: yes
   tasks:
     - include_tasks: ./Tasks/Docker-install.yml
 

@@ -24,6 +24,6 @@
 
 - name: Install docker-compose and make it executable
   get_url:
-    url: https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)
+    url: https://github.com/docker/compose/releases/download/1.26.0/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: '0755'

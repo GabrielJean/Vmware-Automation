@@ -1,0 +1,17 @@
+# - hosts: nginx
+# - name: Import docker playbook
+# include_tasks: Docker.yml
+- hosts: nginx
+
+- name: Include a play after another play
+  include_tasks_tasks: ./Tasks/Docker.yaml
+
+- hosts: nginx
+  order: sorted
+  tasks:
+    - name: Clone git repo
+      git:
+        repo: https://github.com/GabrielJean/Homelab-Automation.git
+        dest: ~/HomeLab-Automation
+
+

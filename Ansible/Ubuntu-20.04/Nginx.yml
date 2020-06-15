@@ -4,7 +4,7 @@
 - hosts: nginx
 
 - name: Include a play after another play
-  include_tasks_tasks: ./Tasks/Docker.yaml
+  include_tasks: ./Tasks/Docker.yaml
 
 - hosts: nginx
   order: sorted

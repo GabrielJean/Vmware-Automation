@@ -3,7 +3,7 @@
 # include_tasks: Docker.yml
 - hosts: nginx
   tasks:
-    - include_tasks: ./Tasks/Docker.yaml
+    - include_tasks: ./Tasks/Docker-install.yml
 
 - hosts: nginx
   order: sorted

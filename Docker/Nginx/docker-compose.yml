@@ -16,7 +16,7 @@ services:
       - DHLEVEL=2048 #optional
       - ONLY_SUBDOMAINS=false #optional
       # - EXTRA_DOMAINS=com2kube.com #optional
-      - STAGING=false #optional
+      - STAGING=true #optional
     volumes:
       - ./nginx.conf:/config/nginx/site-confs/default
     ports:

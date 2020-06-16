@@ -8,6 +8,7 @@
 
 - hosts: nginx
   order: sorted
+  become: yes
   tasks:
 
     - name: Check if git repo already exists

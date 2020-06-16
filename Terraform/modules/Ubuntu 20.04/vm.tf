@@ -28,8 +28,9 @@ resource "vsphere_virtual_machine" "vm" {
     command = "sudo sed -i '/[${var.vsphere_virtual_machine_ansiblegroup}]/a ${var.vsphere_virtual_machine_ip}' /etc/ansible/hosts"
   }
 
+
   provisioner "local-exec" {
-    command = "ansible-playbook ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_ansiblegroup}.yml"
+    command = "ansible-playbook ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_ansiblegroup}.yml"
   }
 
   provisioner "local-exec" {

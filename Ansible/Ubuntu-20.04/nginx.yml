@@ -4,7 +4,7 @@
 - hosts: nginx
   become: yes
   tasks:
-    - include_tasks: ./Tasks/Docker-install.yml
+    - include_tasks: ./Tasks/docker-install.yml
 
 - hosts: nginx
   order: sorted

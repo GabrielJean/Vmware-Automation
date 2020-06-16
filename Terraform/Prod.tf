@@ -10,5 +10,5 @@ module "Nginx" {
   vsphere_virtual_machine_name = "Nginx"
   vsphere_virtual_machine_ip = "10.0.0.30"
   vsphere_virtual_machine_Datastore = "ehq01-DT"
-  vsphere_virtual_machine_ansiblegroup = "pomme"
+  vsphere_virtual_machine_ansiblegroup = "nginx"
 }

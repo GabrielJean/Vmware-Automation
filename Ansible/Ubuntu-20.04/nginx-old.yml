@@ -1,0 +1,67 @@
+# - hosts: nginx
+# - name: Import docker playbook
+# include_tasks: Docker.yml
+- hosts: nginx
+  become: yes
+  tasks:
+    - include_tasks: ./Tasks/docker-install.yml
+
+- hosts: nginx
+  order: sorted
+  become: yes
+  tasks:
+
+    - name: Check if git repo already exists
+      stat: path="~/Homelab-Automation"
+      register: repo
+
+    - name: Calculate md5 of nginx config
+      stat: path="~/Homelab-Automation/Docker/Nginx/nginx.conf"
+      register: nginx_before
+      when: repo.stat.exists
+
+    - name: Calculate md5 of docker-compose file
+      stat: path="~/Homelab-Automation/Docker/Nginx/docker-compose.yml"
+      register: compose_before
+      when: repo.stat.exists
+
+    - name: Clone git repo
+      git:
+        repo: https://github.com/GabrielJean/Homelab-Automation.git
+        dest: ~/Homelab-Automation
+
+    - name: Calculate md5 nginx config
+      stat: path="~/Homelab-Automation/Docker/Nginx/nginx.conf"
+      register: nginx_after
+      when: repo.stat.exists
+
+    - name: Calculate md5 docker-compose file 
+      stat: path="~/Homelab-Automation/Docker/Nginx/docker-compose.yml"
+      register: compose_after
+      when: repo.stat.exists
+
+    - name: Check nginx file for changes
+      command: test {{ nginx_before.stat.checksum }} = {{ nginx_after.stat.checksum }}
+      changed_when: "nginx_results.rc != 0"
+      failed_when: nginx_results.stderr
+      register: nginx_results
+      when: repo.stat.exists
+
+    - name: Check compose file for changes
+      command: test {{ compose_before.stat.checksum }} = {{ compose_after.stat.checksum }}
+      changed_when: "compose_results.rc != 0"
+      failed_when: compose_results.stderr
+      register: compose_results
+      when: repo.stat.exists
+
+    - name: Stop docker-compose
+      command: docker-compose down
+      args:
+        chdir: ~/Homelab-Automation/Docker/Nginx
+      when: nginx_results.changed or compose_results.changed
+
+    - name: Start docker-compose
+      command: docker-compose up -d --build
+      args:
+        chdir: ~/Homelab-Automation/Docker/Nginx
+      when: nginx_results.changed or not repo.stat.exists or compose_results.changed

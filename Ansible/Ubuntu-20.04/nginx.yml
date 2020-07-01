@@ -11,7 +11,7 @@
 
     - name: Configure Nginx
       copy: 
-        src: nginx.conf
+        src: Configs/nginx.conf
         dest: /etc/nginx/sites-available/reverse.cfg
 
     - name: create symlink

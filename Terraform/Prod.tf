@@ -19,7 +19,7 @@ module "Nginx" {
 
 module "Torrent" {
   source = "./modules/Ubuntu 20.04/"
-  vsphere_virtual_machine_name = "Nginx"
+  vsphere_virtual_machine_name = "Torrent"
   vsphere_virtual_machine_ip = "10.0.0.40"
   vsphere_virtual_machine_Datastore = "ehq01-DT"
   vsphere_virtual_machine_ansiblegroup = "docker"

@@ -3,7 +3,7 @@
 #   vsphere_virtual_machine_name = "Exemple"
 #   vsphere_virtual_machine_ip = "10.0.0.25"
 #   vsphere_virtual_machine_Datastore = "ehq01-DT"
-#   vsphere_virtual_machine_ram = 1
+#   vsphere_virtual_machine_ram = 1024
 #   vsphere_virtual_machine_cpu = 1
 # }
 
@@ -13,7 +13,7 @@ module "Nginx" {
   vsphere_virtual_machine_ip = "10.0.0.30"
   vsphere_virtual_machine_Datastore = "FreeNAS-DT"
   vsphere_virtual_machine_ansiblegroup = "nginx"
-  vsphere_virtual_machine_ram = 1
+  vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 1
 }
 
@@ -23,6 +23,6 @@ module "Torrent" {
   vsphere_virtual_machine_ip = "10.0.0.40"
   vsphere_virtual_machine_Datastore = "ehq01-DT"
   vsphere_virtual_machine_ansiblegroup = "docker"
-  vsphere_virtual_machine_ram = 1
+  vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 2
 }

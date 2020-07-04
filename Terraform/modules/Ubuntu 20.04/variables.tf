@@ -4,16 +4,26 @@ variable "vsphere_virtual_machine_name" {
 }
 
 variable "vsphere_virtual_machine_ip" {
-  description = "The name to use for all the cluster resources"
+  description = "Define Virtual Machine IP"
   type        = string
 }
 
 variable "vsphere_virtual_machine_Datastore" {
-  description = "The name to use for all the cluster resources"
+  description = "Define Virtual Machine Datastore"
   type        = string
 }
 
 variable "vsphere_virtual_machine_ansiblegroup" {
-  description = "The name to use for all the cluster resources"
+  description = "Define ansible group"
   type        = string
+}
+
+variable "vsphere_virtual_machine_cpu" {
+  description = "Define amount of virtual cpu"
+  type        = number
+}
+
+variable "vsphere_virtual_machine_ram" {
+  description = "Define amount of ram"
+  type        = number
 }

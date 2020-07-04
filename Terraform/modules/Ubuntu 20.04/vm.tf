@@ -30,7 +30,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 
   provisioner "local-exec" {
-    command = "sleep 15 && ansible-playbook ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_ansiblegroup}.yml"
+    command = "sleep 30 && ansible-playbook ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_ansiblegroup}.yml"
   }
 
   provisioner "local-exec" {

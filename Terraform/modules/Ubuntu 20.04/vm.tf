@@ -23,7 +23,9 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-
+  lifecycle {
+    ignore_changes = [clone]
+  }
   provisioner "local-exec" {
     command = "sudo sed -i '/[${var.vsphere_virtual_machine_ansiblegroup}]/a ${var.vsphere_virtual_machine_ip}' /etc/ansible/hosts"
   }
@@ -67,7 +69,7 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
 
     customize {
-      dns_server_list = ["10.0.0.5"]
+      dns_server_list = ["10.0.0.4", "10.0.0.5"]
       linux_options {
         host_name = "${var.vsphere_virtual_machine_name}"
         domain    = "ad.gwebs.ca"

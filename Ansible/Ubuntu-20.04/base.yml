@@ -14,8 +14,7 @@
       authorized_key:
         user: gabriel
         state: present
-        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxR1gFp9WyVAu7QcBfisc1Ok0F2TVBNYiQlpsD3oHrY0KbtgSqTqKcC0mIhptLKPk0lsfTgnqMQiEe3vCNI8Y8uMuS+/v3rmUf/avNL4hFwpEeHs3czPbw1wgS7bLGTElriqgW7EqlX8DCSDbjnYvBflGQSL/6fYkneJf478wYHXJA/NwEACJMInhZhjwPIZmMoxEF+2D9p5g3jQbxKEcEcHDYCzTLqmCMrpq8lutxApaphLrBdO1YqYMIZCmJ/r91pnpRYDg4KI6xzsxB+eModPMFwqXgmKs7lf/69RQiE8+rf1lCfXj2eVea6cV/1UJKPpziyiyqPRVsiB49sP8urhk1HXl5ZqKzqwL55N7+pzJB492suwcfc5xLW+TotFiCRiX/7ZDbkURd+NKKIoOBLcmUJ9bW7qEPP2iVf+6O2/SlTioJ0wvf875kSqjxKKFXaG13E2LhA8r0Zq+fjvKAVWWICPchUNsz7RWsQKhuSKnYDYO7m79KHqPnzX3L+sk="
-      
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEI5MhckCsoXNneD5oNcfPbkXuWLyD7JfivBIcdpDRq/02m0YnWUesZMDiFfbcw7LOf2qzPOvsBktXJuUNI8gPwmLInpmwcVQXZioadDd8DUrn70AQh6eHVWsTrtAu24jDpuHdRnMkocVS8NchXqPFLUtMMgN6g08ANrd3pc/Nai0J1vrpOw0DPn1ld5mjMvSTO34CuYpq2umlJzg8Bja2j6Q5Bpt5P9tvgfNOFOnlbjizppaOf2EUHd+BBT9TWFGtLZZh+A9uSCwL0WoecIuNxR/NiXL0Yi7WrL/RQB0CUhyGjyAvGGiokY+2D1DvpTq2FckZdM64bEC0F/xvGPfPKkIf1y2DS5fGrFbe2/SwjUD0WADxjJtd1l8NsHv9pLg9mEGsMbqImyrIR8nsxVsY8/OHOI3gDHn9BKtnlFdANtHZB/5++ogmnJomaTuvr55DrCQgJh3dcAXUMY1rRLJyLdJjzN0nmC735F6TtSIiPIv6L8qGtVDbjOksSiwgP20=" 
     - name: Install a list of packages
       apt:
         pkg:

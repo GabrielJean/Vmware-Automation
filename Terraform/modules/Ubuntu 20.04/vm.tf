@@ -45,7 +45,10 @@ resource "vsphere_virtual_machine" "vm" {
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
 
   num_cpus = var.vsphere_virtual_machine_cpu
+  cpu_hot_add_enabled = true
+  cpu_hot_remove_enabled = true
   memory   = var.vsphere_virtual_machine_ram
+  memory_hot_add_enabled = true
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
 
   scsi_type = "${data.vsphere_virtual_machine.template.scsi_type}"

@@ -10,7 +10,8 @@
 module "Nginx" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Nginx"
-  vsphere_virtual_machine_ip = "10.0.0.30"
+  vsphere_virtual_machine_network = "DMZ"
+  vsphere_virtual_machine_ip = "10.0.100.30"
   vsphere_virtual_machine_Datastore = "FreeNAS-DT"
   vsphere_virtual_machine_ansiblegroup = "nginx"
   vsphere_virtual_machine_ram = 1024
@@ -20,6 +21,7 @@ module "Nginx" {
 module "Torrent" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Torrent"
+  vsphere_virtual_machine_network = "VM Network"
   vsphere_virtual_machine_ip = "10.0.0.40"
   vsphere_virtual_machine_Datastore = "ehq01-DT"
   vsphere_virtual_machine_ansiblegroup = "docker"
@@ -30,6 +32,7 @@ module "Torrent" {
 module "Bitwarden" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Bitwarden"
+  vsphere_virtual_machine_network = "VM Network"
   vsphere_virtual_machine_ip = "10.0.0.31"
   vsphere_virtual_machine_Datastore = "FreeNAS-DT"
   vsphere_virtual_machine_ansiblegroup = "docker"

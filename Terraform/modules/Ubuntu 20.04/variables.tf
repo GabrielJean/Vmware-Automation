@@ -8,6 +8,11 @@ variable "vsphere_virtual_machine_ip" {
   type        = string
 }
 
+variable "vsphere_virtual_machine_network" {
+  description = "Define Virtual Machine Network"
+  type        = string
+}
+
 variable "vsphere_virtual_machine_Datastore" {
   description = "Define Virtual Machine Datastore"
   type        = string

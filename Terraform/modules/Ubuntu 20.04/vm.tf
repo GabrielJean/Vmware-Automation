@@ -13,7 +13,7 @@ data "vsphere_compute_cluster" "cluster" {
 }
 
 data "vsphere_network" "network" {
-  name          = "VM Network"
+  name          = "${var.vsphere_virtual_machine_network}"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 

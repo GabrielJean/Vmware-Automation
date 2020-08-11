@@ -63,7 +63,7 @@ services:
       - Plex-nfs:/downloads
     environment:
       - OPENVPN_PROVIDER=PIA
-      - LOCAL_NETWORK=10.0.0.0/23,172.30.224.0/20
+      - LOCAL_NETWORK=10.0.0.0/24,172.30.224.0/20
       - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
       - TRANSMISSION_RATIO_LIMIT=0
       - TRANSMISSION_RATIO_LIMIT_ENABLED=true

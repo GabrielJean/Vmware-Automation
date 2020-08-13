@@ -2,23 +2,29 @@
   order: sorted
   become: yes
   tasks:
-
     - name: Install nginx
       apt:
         name: nginx, certbot, python3-certbot-nginx
         state: present
         update_cache: yes
 
-    - name: Configure Nginx
-      copy: 
-        src: Configs/nginx.conf
-        dest: /etc/nginx/sites-available/reverse.cfg
+    - name: Install Nginx configs
+      copy:
+        src: Configs/Nginx/
+        dest: /etc/nginx/sites-available
 
-    - name: create symlink
+    - name: Find all files in "sites-available"
+      find:
+        paths: /etc/nginx/sites-available
+      register: find
+
+    - name: Create symlinks to "sites-enabled"
+      become: True
       file:
-        src: /etc/nginx/sites-available/reverse.cfg
-        dest: /etc/nginx/sites-enabled/reverse
+        src: "{{ item.path }}"
+        path: "/etc/nginx/sites-enabled/{{ item.path | basename }}"
         state: link
+      with_items: "{{ find.files }}"
 
     - name: Configure HTTPS with certbot
       command: "certbot --nginx --register-unsafely-without-email --agree-tos --redirect -n --keep -d nextcloud.gwebs.ca bitwarden.gwebs.ca gabrieljean.com"

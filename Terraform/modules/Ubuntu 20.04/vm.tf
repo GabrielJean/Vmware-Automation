@@ -32,7 +32,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 
   provisioner "local-exec" {
-    command = "sleep 30 && ansible-playbook ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_ansiblegroup}.yml"
+    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ansible ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_ansiblegroup}.yml"
   }
 
   provisioner "local-exec" {
@@ -80,10 +80,10 @@ resource "vsphere_virtual_machine" "vm" {
 
       network_interface {
         ipv4_address = "${var.vsphere_virtual_machine_ip}"
-        ipv4_netmask = 23
+        ipv4_netmask = 24
       }
 
-      ipv4_gateway = "10.0.0.1"
+      ipv4_gateway = "${var.vsphere_virtual_machine_gw}"
     }
   }
 }

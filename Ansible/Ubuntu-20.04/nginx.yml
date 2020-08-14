@@ -2,6 +2,10 @@
   order: sorted
   become: yes
   tasks:
+    - name: block ipv6 for apt
+      copy:
+        content: "Acquire::ForceIPv4 true;"
+        dest: "/etc/apt/apt.conf.d/99force-ipv4"
 
     - name: Install nginx
       apt:
@@ -9,19 +13,29 @@
         state: present
         update_cache: yes
 
-    - name: Configure Nginx
-      copy: 
-        src: Configs/nginx.conf
-        dest: /etc/nginx/sites-available/reverse.cfg
+    - name: Remove server tokens
+      command: sed -i 's/#server_tokens off;/server_tokens off;/' /etc/nginx/nginx.conf
 
-    - name: create symlink
+    - name: Install Nginx configs
+      copy:
+        src: Configs/Nginx/
+        dest: /etc/nginx/sites-available
+
+    - name: Find all files in "sites-available"
+      find:
+        paths: /etc/nginx/sites-available
+      register: find
+
+    - name: Create symlinks to "sites-enabled"
+      become: True
       file:
-        src: /etc/nginx/sites-available/reverse.cfg
-        dest: /etc/nginx/sites-enabled/reverse
+        src: "{{ item.path }}"
+        path: "/etc/nginx/sites-enabled/{{ item.path | basename }}"
         state: link
+      with_items: "{{ find.files }}"
 
     - name: Configure HTTPS with certbot
-      command: "certbot --nginx --register-unsafely-without-email --agree-tos --redirect -n --keep -d nextcloud.gwebs.ca"
+      command: "certbot --nginx --register-unsafely-without-email --agree-tos --redirect -n --keep -d nextcloud.gwebs.ca -d bitwarden.gwebs.ca"
 
     - name: Start and Enable service nginx, if not started
       service:

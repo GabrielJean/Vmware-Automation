@@ -2,12 +2,23 @@
   order: sorted
   become: yes
   tasks:
+
+    - name: Ensure group "www" exists
+    group:
+      name: www
+      state: present
+
+    - name: Ensure group "docker" exists
+    group:
+      name: docker
+      state: present
+
     - name: Create Gabriel user
       user:
         name: gabriel
         state: present
         shell: /bin/bash
-        groups: sudo
+        groups: sudo,www,docker
         append: yes
 
     - name: Set authorized key taken from file

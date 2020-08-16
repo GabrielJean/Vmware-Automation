@@ -14,7 +14,7 @@ module "Nginx" {
   vsphere_virtual_machine_ip = "10.0.100.30"
   vsphere_virtual_machine_gw = "10.0.100.1"
   vsphere_virtual_machine_Datastore = "FreeNAS-DS"
-  vsphere_virtual_machine_ansiblegroup = "nginx"
+  vsphere_virtual_machine_tag = "nginx"
   vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 1
 }
@@ -26,7 +26,7 @@ module "Torrent" {
   vsphere_virtual_machine_ip = "10.0.0.40"
   vsphere_virtual_machine_gw = "10.0.0.1"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
-  vsphere_virtual_machine_ansiblegroup = "docker"
+  vsphere_virtual_machine_tag = "docker"
   vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 2
 }
@@ -38,7 +38,7 @@ module "Torrent" {
 #   vsphere_virtual_machine_ip = "10.0.0.21"
 #   vsphere_virtual_machine_gw = "10.0.0.1"
 #   vsphere_virtual_machine_Datastore = "ehq01-DS"
-#   vsphere_virtual_machine_ansiblegroup = "base"
+#   vsphere_virtual_machine_tag = "base"
 #   vsphere_virtual_machine_ram = 1024
 #   vsphere_virtual_machine_cpu = 1
 # }
@@ -50,7 +50,7 @@ module "Bitwarden" {
   vsphere_virtual_machine_ip = "10.0.0.31"
   vsphere_virtual_machine_gw = "10.0.0.1"
   vsphere_virtual_machine_Datastore = "FreeNAS-DS"
-  vsphere_virtual_machine_ansiblegroup = "docker"
+  vsphere_virtual_machine_tag = "docker"
   vsphere_virtual_machine_ram = 4096
   vsphere_virtual_machine_cpu = 2
 }

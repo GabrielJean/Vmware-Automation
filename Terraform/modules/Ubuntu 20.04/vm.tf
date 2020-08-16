@@ -23,22 +23,18 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
+
+  tags = "${var.vsphere_virtual_machine_tag}"
+
+
   lifecycle {
     ignore_changes = [clone]
   }
-  provisioner "local-exec" {
-    command = "sudo sed -i '/[${var.vsphere_virtual_machine_ansiblegroup}]/a ${var.vsphere_virtual_machine_ip}' /etc/ansible/hosts"
-  }
-
 
   provisioner "local-exec" {
-    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ansible ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_ansiblegroup}.yml"
+    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ansible ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml"
   }
 
-  provisioner "local-exec" {
-    when = "destroy"
-    command = "sudo sed -i '/${var.vsphere_virtual_machine_ip}/d' /etc/ansible/hosts "
-  }
 
   name             = "${var.vsphere_virtual_machine_name}"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"

@@ -24,7 +24,7 @@ variable "vsphere_virtual_machine_Datastore" {
   type        = string
 }
 
-variable "vsphere_virtual_machine_ansiblegroup" {
+variable "vsphere_virtual_machine_tag" {
   description = "Define ansible group"
   type        = string
 }

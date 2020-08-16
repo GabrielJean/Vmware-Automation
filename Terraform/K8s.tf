@@ -4,7 +4,7 @@
 #   vsphere_virtual_machine_network = "VM Network"
 #   vsphere_virtual_machine_ip = "10.0.0.50"
 #   vsphere_virtual_machine_Datastore = "ehq02-DS"
-#   vsphere_virtual_machine_ansiblegroup = "docker"
+#   vsphere_virtual_machine_tag = "docker"
 #   vsphere_virtual_machine_ram = 4096
 #   vsphere_virtual_machine_cpu = 2
 # }
@@ -15,7 +15,7 @@
 #   vsphere_virtual_machine_network = "VM Network"
 #   vsphere_virtual_machine_ip = "10.0.0.59"
 #   vsphere_virtual_machine_Datastore = "ehq02-DS"
-#   vsphere_virtual_machine_ansiblegroup = "docker"
+#   vsphere_virtual_machine_tag = "docker"
 #   vsphere_virtual_machine_ram = 2048
 #   vsphere_virtual_machine_cpu = 2
 # }
@@ -26,7 +26,7 @@
 #   vsphere_virtual_machine_network = "VM Network"
 #   vsphere_virtual_machine_ip = "10.0.0.51"
 #   vsphere_virtual_machine_Datastore = "ehq01-DS"
-#   vsphere_virtual_machine_ansiblegroup = "docker"
+#   vsphere_virtual_machine_tag = "docker"
 #   vsphere_virtual_machine_ram = 2048
 #   vsphere_virtual_machine_cpu = 2
 # }
@@ -37,7 +37,7 @@
 #   vsphere_virtual_machine_network = "VM Network"
 #   vsphere_virtual_machine_ip = "10.0.0.52"
 #   vsphere_virtual_machine_Datastore = "ehq02-DS"
-#   vsphere_virtual_machine_ansiblegroup = "docker"
+#   vsphere_virtual_machine_tag = "docker"
 #   vsphere_virtual_machine_ram = 2048
 #   vsphere_virtual_machine_cpu = 2
 # }

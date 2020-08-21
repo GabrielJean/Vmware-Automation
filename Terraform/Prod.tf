@@ -7,6 +7,10 @@
 #   vsphere_virtual_machine_cpu = 1
 # }
 
+# output "lb_address" {
+#   value = "${aws_alb.web.public_dns}"
+# }
+
 module "Nginx" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Nginx"
@@ -22,7 +26,7 @@ module "Nginx" {
 module "Torrent" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Torrent"
-  vsphere_virtual_machine_network = "VM Network"
+  vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.40"
   vsphere_virtual_machine_gw = "10.0.0.1"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
@@ -34,7 +38,7 @@ module "Torrent" {
 # module "Azure-Devops-Agent" {
 #   source = "./modules/Ubuntu 20.04/"
 #   vsphere_virtual_machine_name = "Azure-Devops-Agent"
-#   vsphere_virtual_machine_network = "VM Network"
+#   vsphere_virtual_machine_network = "VM-Network"
 #   vsphere_virtual_machine_ip = "10.0.0.21"
 #   vsphere_virtual_machine_gw = "10.0.0.1"
 #   vsphere_virtual_machine_Datastore = "ehq01-DS"
@@ -46,7 +50,7 @@ module "Torrent" {
 module "Bitwarden" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Bitwarden"
-  vsphere_virtual_machine_network = "VM Network"
+  vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.31"
   vsphere_virtual_machine_gw = "10.0.0.1"
   vsphere_virtual_machine_Datastore = "FreeNAS-DS"

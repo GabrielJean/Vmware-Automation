@@ -18,7 +18,7 @@ variable "vsphere_virtual_machine_gw" {
 variable "vsphere_virtual_machine_network" {
   description = "Define Virtual Machine Network"
   type        = string
-  default     = "VM Network"
+  default     = "VM-Network"
 }
 
 variable "vsphere_virtual_machine_Datastore" {

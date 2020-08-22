@@ -22,7 +22,7 @@ All of this is very specific to my environment and honestly not really made to b
 It's really important to secure that file and to not send it to a remote repository. (**Terraform/provider.tf** is in the .gitignore)
 
 ### Ansible
-Ansible will try to gather it's inventory from vSphere itself, we need to configure that with the proper credentials too.
+Ansible will try to gather its inventory from vSphere itself, we need to configure that with the proper credentials too.
 
 * Go into the Terraform folder
 
@@ -33,6 +33,16 @@ Ansible will try to gather it's inventory from vSphere itself, we need to config
 Again, it's really important to secure that file and to not send it to a remote repository. (**Terraform/provider.tf** is in the .gitignore)
 
 ### Docker-Compose
+Here are stored my docker-compose scripts
+
+You can simply go to the **Docker** directory and use whatever you want. Keep in mind there is probably some environment variables to adjust. 
 
 ## Todo
-* CI/CD Pipeline to test and deploy automatically my changes
+- [ ] CI/CD Pipeline to test and deploy automatically my changes
+
+## Done
+
+- [x] Automated VM provisioning with Terraform
+- [x] Automated VM configuration with Ansible
+- [x] Nginx reverse proxy 100% automatic deployment
+- [x] Ansible dynamic inventory

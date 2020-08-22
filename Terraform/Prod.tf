@@ -34,7 +34,7 @@ module "Torrent" {
 
 module "Rancher-Server" {
   source = "./modules/Ubuntu 20.04/"
-  vsphere_virtual_machine_name = "Rancher-Server"
+  vsphere_virtual_machine_name = "Rancher-Serve-test"
   vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.50"
   vsphere_virtual_machine_Datastore = "ehq02-DS"

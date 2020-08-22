@@ -28,7 +28,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 
   lifecycle {
-    ignore_changes = [clone]
+    ignore_changes = [clone, tags]
   }
 
   provisioner "local-exec" {

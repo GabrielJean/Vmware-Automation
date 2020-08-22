@@ -1,0 +1,7 @@
+plugin: vmware_vm_inventory
+strict: False
+hostname:
+username:
+password:
+validate_certs:
+with_tags:

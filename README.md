@@ -9,7 +9,7 @@ Once they are created, Terraform executes the ansible script that was define wit
 
 ## Configuration
 
-All of this is very specific to my environment and honestly not really made to be used by someone else but I hope you can use some of it.
+All of this is very specific to my environment and honestly not really made to be used by someone else. I hope you can still use some of it.
 
 ### Terraform
 
@@ -21,7 +21,16 @@ All of this is very specific to my environment and honestly not really made to b
 
 It's really important to secure that file and to not send it to a remote repository. (**Terraform/provider.tf** is in the .gitignore)
 
+### Ansible
+Ansible will try to gather it's inventory from vSphere itself, we need to configure that with the proper credentials too.
 
+* Go into the Terraform folder
+
+* Run : cp ../inv.vmware.yml . 
+
+* Configure your credentials in the file you just created
+
+Again, it's really important to secure that file and to not send it to a remote repository. (**Terraform/provider.tf** is in the .gitignore)
 
 ### Docker-Compose
 

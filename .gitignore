@@ -1,3 +1,5 @@
 
 Terraform/provider.tf
 Terraform/inv.vmware.yml
+Terraform/.terraform
+Terraform/inv.json

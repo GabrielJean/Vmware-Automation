@@ -24,7 +24,7 @@ data "vsphere_virtual_machine" "template" {
 
 resource "vsphere_virtual_machine" "vm" {
 
-  tags = "${var.vsphere_virtual_machine_tag}"
+  tags = ["${var.vsphere_virtual_machine_tag}"]
 
 
   lifecycle {
@@ -32,7 +32,11 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   provisioner "local-exec" {
-    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ansible ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml"
+    command = "ansible-inventory --list -i inv.vmware.yml > inv.json"
+  }
+
+  provisioner "local-exec" {
+    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inv.json -u ansible ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml"
   }
 
 

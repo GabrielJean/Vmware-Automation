@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: Linux
   order: sorted
   become: yes
   tasks:

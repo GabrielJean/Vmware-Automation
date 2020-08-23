@@ -4,14 +4,14 @@
   tasks:
 
     - name: Ensure group "www" exists
-    group:
-      name: www
-      state: present
+      group:
+        name: www
+        state: present
 
     - name: Ensure group "docker" exists
-    group:
-      name: docker
-      state: present
+      group:
+        name: docker
+        state: present
 
     - name: Create Gabriel user
       user:

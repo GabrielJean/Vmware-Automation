@@ -35,7 +35,7 @@
       with_items: "{{ find.files }}"
 
     - name: Configure HTTPS with certbot
-      command: "certbot --nginx --register-unsafely-without-email --agree-tos --redirect -n --keep -d nextcloud.gwebs.ca -d bitwarden.gwebs.ca"
+      command: "certbot --nginx --register-unsafely-without-email --agree-tos --redirect -n --keep -d nextcloud.gwebs.ca -d bitwarden.gwebs.ca -d gabrieljean.com -d com2kube.io"
 
     - name: Start and Enable service nginx, if not started
       service:

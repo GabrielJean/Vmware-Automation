@@ -31,12 +31,9 @@ resource "vsphere_virtual_machine" "vm" {
     ignore_changes = [clone, tags]
   }
 
-  provisioner "local-exec" {
-    command = "ansible-inventory --list -i inv.vmware.yml > inv.json"
-  }
 
   provisioner "local-exec" {
-    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inv.json -u ansible ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml"
+    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inv.vmware.yml -u ansible ../Ansible/Ubuntu-20.04/base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml"
   }
 
 

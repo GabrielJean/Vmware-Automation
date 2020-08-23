@@ -1,4 +1,3 @@
-
 # Don't forget to add your vpn credentials and to specify your network, otherwise the transmission container won't work.
 version: "2"
 
@@ -16,66 +15,65 @@ services:
       - 9117:9117
     restart: unless-stopped
 
-  radarr:
-    image: linuxserver/radarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Toronto
-      - UMASK_SET=022 #optional
-    volumes:
-      - /opt/radarr:/config
-      - Plex-nfs:/movies
-      - Plex-nfs:/downloads
-    ports:
-      - 7878:7878
-    restart: unless-stopped
+  # radarr:
+  #   image: linuxserver/radarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=America/Toronto
+  #     - UMASK_SET=022 #optional
+  #   volumes:
+  #     - /opt/radarr:/config
+  #     - Plex-nfs:/movies
+  #     - Plex-nfs:/downloads
+  #   ports:
+  #     - 7878:7878
+  #   restart: unless-stopped
 
-  sonarr:
-    image: linuxserver/sonarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Toronto
-      - UMASK_SET=022 #optional
-    volumes:
-      - /opt/sonarr:/config
-      - Plex-nfs:/tv
-      - Plex-nfs:/downloads
-    ports:
-      - 8989:8989
-    restart: unless-stopped
+  # sonarr:
+  #   image: linuxserver/sonarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=America/Toronto
+  #     - UMASK_SET=022 #optional
+  #   volumes:
+  #     - /opt/sonarr:/config
+  #     - Plex-nfs:/tv
+  #     - Plex-nfs:/downloads
+  #   ports:
+  #     - 8989:8989
+  #   restart: unless-stopped
 
-  transmission:
-    image: haugene/transmission-openvpn
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun
-    restart: unless-stopped
-    ports:
-      - "9091:9091"
-      - "8888:8888"
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1
-    volumes:
-      - Plex-nfs:/downloads
-    environment:
-      - OPENVPN_PROVIDER=PIA
-      - LOCAL_NETWORK=10.0.0.0/24,172.30.224.0/20
-      - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
-      - TRANSMISSION_RATIO_LIMIT=0
-      - TRANSMISSION_RATIO_LIMIT_ENABLED=true
-      - TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=false
-      - TRANSMISSION_MAX_PEER_GLOBAL=99999
-      - TRANSMISSION_PEER_LIMIT_GLOBAL=9999
-      - TRANSMISSION_PEER_LIMIT_PER_TORRENT=9999
-      - TRANSMISSION_DOWNLOAD_DIR=/downloads/Torrent
-      - TRANSMISSION_INCOMPLETE_DIR_ENABLED=false
-      - OPENVPN_USERNAME=
-      - OPENVPN_PASSWORD=
-
+  # transmission:
+  #   image: haugene/transmission-openvpn
+  #   cap_add:
+  #     - NET_ADMIN
+  #   devices:
+  #     - /dev/net/tun
+  #   restart: unless-stopped
+  #   ports:
+  #     - "9091:9091"
+  #     - "8888:8888"
+  #   dns:
+  #     - 1.1.1.1
+  #     - 1.0.0.1
+  #   volumes:
+  #     - Plex-nfs:/downloads
+  #   environment:
+  #     - OPENVPN_PROVIDER=PIA
+  #     - LOCAL_NETWORK=10.0.0.0/24,172.30.224.0/20
+  #     - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
+  #     - TRANSMISSION_RATIO_LIMIT=0
+  #     - TRANSMISSION_RATIO_LIMIT_ENABLED=true
+  #     - TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=false
+  #     - TRANSMISSION_MAX_PEER_GLOBAL=99999
+  #     - TRANSMISSION_PEER_LIMIT_GLOBAL=9999
+  #     - TRANSMISSION_PEER_LIMIT_PER_TORRENT=9999
+  #     - TRANSMISSION_DOWNLOAD_DIR=/downloads/Torrent
+  #     - TRANSMISSION_INCOMPLETE_DIR_ENABLED=false
+  #     - OPENVPN_USERNAME=
+  #     - OPENVPN_PASSWORD=
 
 volumes:
   Plex-nfs:

@@ -1,4 +1,4 @@
-- hosts: nginx
+- hosts: Nginx
   order: sorted
   become: yes
   tasks:

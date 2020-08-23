@@ -32,17 +32,28 @@ module "Torrent" {
 #   vsphere_virtual_machine_cpu = 1
 # }
 
-module "Rancher-Server" {
+# module "Rancher-Server" {
+#   source = "./modules/Ubuntu 20.04/"
+#   vsphere_virtual_machine_name = "Rancher-Serve-test"
+#   vsphere_virtual_machine_network = "VM-Network"
+#   vsphere_virtual_machine_ip = "10.0.0.50"
+#   vsphere_virtual_machine_Datastore = "ehq02-DS"
+#   vsphere_virtual_machine_tag = "Docker"
+#   vsphere_virtual_machine_ram = 4096
+#   vsphere_virtual_machine_cpu = 2
+# }
+
+
+module "Rancher" {
   source = "./modules/Ubuntu 20.04/"
-  vsphere_virtual_machine_name = "Rancher-Serve-test"
+  vsphere_virtual_machine_name = "Rancher"
   vsphere_virtual_machine_network = "VM-Network"
-  vsphere_virtual_machine_ip = "10.0.0.50"
+  vsphere_virtual_machine_ip = "10.0.0.70"
   vsphere_virtual_machine_Datastore = "ehq02-DS"
-  vsphere_virtual_machine_tag = "Docker"
+  vsphere_virtual_machine_tag = "Rancher"
   vsphere_virtual_machine_ram = 4096
   vsphere_virtual_machine_cpu = 2
 }
-
 module "Bitwarden" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Bitwarden"

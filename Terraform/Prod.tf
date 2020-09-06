@@ -27,7 +27,6 @@ module "Prometheus" {
   vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.21"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
-  vsphere_virtual_machine_tag = "Base"
   vsphere_virtual_machine_ram = 2048
   vsphere_virtual_machine_cpu = 2
 }
@@ -38,7 +37,6 @@ module "Azure-Devops-Agent" {
   vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.22"
   vsphere_virtual_machine_Datastore = "ehq02-DS"
-  vsphere_virtual_machine_tag = "Base"
   vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 1
 }

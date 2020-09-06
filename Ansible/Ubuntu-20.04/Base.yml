@@ -33,3 +33,4 @@
         - vim
         - nmon
         - git
+        - prometheus-node-exporter

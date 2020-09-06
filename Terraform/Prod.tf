@@ -17,7 +17,7 @@ module "Torrent" {
   vsphere_virtual_machine_ip = "10.0.0.40"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
   vsphere_virtual_machine_tag = "Docker"
-  vsphere_virtual_machine_ram = 1024
+  vsphere_virtual_machine_ram = 1536
   vsphere_virtual_machine_cpu = 2
 }
 
@@ -27,7 +27,7 @@ module "Prometheus" {
   vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.21"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
-  vsphere_virtual_machine_ram = 2048
+  vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 2
 }
 
@@ -50,7 +50,7 @@ module "Rancher" {
   vsphere_virtual_machine_ip = "10.0.0.70"
   vsphere_virtual_machine_Datastore = "ehq02-DS"
   vsphere_virtual_machine_tag = "Rancher"
-  vsphere_virtual_machine_ram = 4096
+  vsphere_virtual_machine_ram = 2048
   vsphere_virtual_machine_cpu = 2
 }
 module "Bitwarden" {
@@ -60,6 +60,6 @@ module "Bitwarden" {
   vsphere_virtual_machine_ip = "10.0.0.31"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
   vsphere_virtual_machine_tag = "Docker"
-  vsphere_virtual_machine_ram = 4096
+  vsphere_virtual_machine_ram = 3072
   vsphere_virtual_machine_cpu = 2
 }

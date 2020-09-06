@@ -29,7 +29,7 @@ variable "vsphere_virtual_machine_Datastore" {
 variable "vsphere_virtual_machine_tag" {
   description = "Define ansible group"
   type        = string
-  default     = "Base"
+  default     = "Linux"
 }
 
 variable "vsphere_virtual_machine_cpu" {

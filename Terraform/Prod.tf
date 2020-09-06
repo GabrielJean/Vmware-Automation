@@ -21,27 +21,28 @@ module "Torrent" {
   vsphere_virtual_machine_cpu = 2
 }
 
-# module "Azure-Devops-Agent" {
-#   source = "./modules/Ubuntu 20.04/"
-#   vsphere_virtual_machine_name = "Azure-Devops-Agent"
-#   vsphere_virtual_machine_network = "VM-Network"
-#   vsphere_virtual_machine_ip = "10.0.0.21"
-#   vsphere_virtual_machine_Datastore = "ehq01-DS"
-#   vsphere_virtual_machine_tag = "base"
-#   vsphere_virtual_machine_ram = 1024
-#   vsphere_virtual_machine_cpu = 1
-# }
+module "Prometheus" {
+  source = "./modules/Ubuntu 20.04/"
+  vsphere_virtual_machine_name = "Prometheus"
+  vsphere_virtual_machine_network = "VM-Network"
+  vsphere_virtual_machine_ip = "10.0.0.21"
+  vsphere_virtual_machine_Datastore = "ehq01-DS"
+  vsphere_virtual_machine_tag = "base"
+  vsphere_virtual_machine_ram = 2048
+  vsphere_virtual_machine_cpu = 2
+}
 
-# module "Rancher-Server" {
-#   source = "./modules/Ubuntu 20.04/"
-#   vsphere_virtual_machine_name = "Rancher-Serve-test"
-#   vsphere_virtual_machine_network = "VM-Network"
-#   vsphere_virtual_machine_ip = "10.0.0.50"
-#   vsphere_virtual_machine_Datastore = "ehq02-DS"
-#   vsphere_virtual_machine_tag = "Docker"
-#   vsphere_virtual_machine_ram = 4096
-#   vsphere_virtual_machine_cpu = 2
-# }
+module "Azure-Devops-Agent" {
+  source = "./modules/Ubuntu 20.04/"
+  vsphere_virtual_machine_name = "Azure-Devops-Agent"
+  vsphere_virtual_machine_network = "VM-Network"
+  vsphere_virtual_machine_ip = "10.0.0.22"
+  vsphere_virtual_machine_Datastore = "ehq02-DS"
+  vsphere_virtual_machine_tag = "base"
+  vsphere_virtual_machine_ram = 1024
+  vsphere_virtual_machine_cpu = 1
+}
+
 
 
 module "Rancher" {

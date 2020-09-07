@@ -33,7 +33,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 
   provisioner "local-exec" {
-    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inv.vmware.yml -u ansible ../Ansible/Ubuntu-20.04/Base.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml"
+    command = "sleep 45 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inv.vmware.yml -u ansible ../Ansible/Ubuntu-20.04/Linux.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml"
   }
 
 

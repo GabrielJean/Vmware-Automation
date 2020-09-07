@@ -45,7 +45,11 @@
         content: "{{ goaccess_service | b64decode }}"
 
     - name: chmod nginx files to nginx users and group
-      command: chown -R www-data:www /var/www/html && chown -R www-data:www /var/log/nginx
+      command: chown -R www-data:www /var/www/html
+
+    - name: chmod nginx logs to nginx users and group
+      command: chown -R www-data:www /var/log/nginx
+
 
     - name: Start and Enable service nginx, if not started
       service:

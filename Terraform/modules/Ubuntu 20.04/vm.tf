@@ -24,7 +24,7 @@ data "vsphere_virtual_machine" "template" {
 
 resource "vsphere_virtual_machine" "vm" {
 
-  tags = ["${var.vsphere_virtual_machine_tag}"]
+  tags = ["Linux", "${var.vsphere_virtual_machine_tag}"]
 
 
   lifecycle {

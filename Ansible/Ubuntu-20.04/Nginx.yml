@@ -7,9 +7,9 @@
         content: "Acquire::ForceIPv4 true;"
         dest: "/etc/apt/apt.conf.d/99force-ipv4"
 
-    - name: Install nginx
+    - name: Install nginx and goaccess
       apt:
-        name: nginx, certbot, python3-certbot-nginx
+        name: nginx, certbot, python3-certbot-nginx, goaccess
         state: present
         update_cache: yes
 
@@ -37,9 +37,22 @@
     - name: Configure HTTPS with certbot
       command: "certbot --nginx --register-unsafely-without-email --expand --agree-tos --redirect -n --keep -d nextcloud.gwebs.ca -d bitwarden.gwebs.ca -d gabrieljean.com -d com2kube.io"
 
+    - copy:
+        dest: '/lib/systemd/system/goaccess.service'
+        content: '{{ W1VuaXRdCkRlc2NyaXB0aW9uPUdvYWNjZXNzIFdlYiBsb2cgcmVwb3J0LgpBZnRlcj1uZXR3b3JrLnRhcmdldAoKW1NlcnZpY2VdClR5cGU9c2ltcGxlClVzZXI9d3d3LWRhdGEKUmVzdGFydD1hbHdheXMKRXhlY1N0YXJ0PS91c3IvYmluL2dvYWNjZXNzIC92YXIvbG9nL25naW54L2FjY2Vzcy5sb2cqIC92YXIvbG9nL25naW54L3JldmVyc2UtYWNjZXNzLmxvZyogLW8gL3Zhci93d3cvaHRtbC9pbmRleC5odG1sIC0tbG9nLWZvcm1hdD1DT01CSU5FRCAtLXJlYWwtdGltZS1odG1sClN0YW5kYXJkT3V0cHV0PW51bGwKU3RhbmRhcmRFcnJvcj1udWxsCgpbSW5zdGFsbF0KV2FudGVkQnk9bXVsdGktdXNlci50YXJnZXQ= | b64decode }}'
+
+    - name: chmod /var/www/html to nginx users and group
+      command: chown -R www-data:www /var/www/html
+
     - name: Start and Enable service nginx, if not started
       service:
         name: nginx
+        state: started
+        enabled: yes
+
+    - name: Start and Enable service goaccess, if not started
+      service:
+        name: goaccess
         state: started
         enabled: yes
 

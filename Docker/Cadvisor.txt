@@ -9,4 +9,4 @@ sudo docker run -d --restart always \
   --name=cadvisor \
   --privileged \
   --device=/dev/kmsg \
-  gcr.io/cadvisor/cadvisor
+  gcr.io/cadvisor/cadvisor:v0.37.0

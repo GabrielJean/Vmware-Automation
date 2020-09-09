@@ -1,4 +1,4 @@
-sudo docker run \
+sudo docker run -d --restart always \
   --volume=/:/rootfs:ro \
   --volume=/var/run:/var/run:ro \
   --volume=/sys:/sys:ro \

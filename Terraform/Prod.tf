@@ -18,7 +18,7 @@ module "Torrent" {
   vsphere_virtual_machine_Datastore = "ehq01-DS"
   vsphere_virtual_machine_tag = "Docker"
   vsphere_virtual_machine_ram = 1536
-  vsphere_virtual_machine_cpu = 2
+  vsphere_virtual_machine_cpu = 4
 }
 
 module "Prometheus" {

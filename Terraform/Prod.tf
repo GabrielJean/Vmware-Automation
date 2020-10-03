@@ -31,15 +31,6 @@ module "Prometheus" {
   vsphere_virtual_machine_cpu = 2
 }
 
-module "Azure-Devops" {
-  source = "./modules/Ubuntu 20.04/"
-  vsphere_virtual_machine_name = "Azure-Devops"
-  vsphere_virtual_machine_network = "VM-Network"
-  vsphere_virtual_machine_ip = "10.0.0.22"
-  vsphere_virtual_machine_Datastore = "ehq02-DS"
-  vsphere_virtual_machine_ram = 1024
-  vsphere_virtual_machine_cpu = 1
-}
 
 
 

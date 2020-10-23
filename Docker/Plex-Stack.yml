@@ -45,38 +45,36 @@ services:
       - 8989:8989
     restart: unless-stopped
 
-  transmission:
-    image: haugene/transmission-openvpn
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun
-    restart: unless-stopped
-    ports:
-      - "9091:9091"
-      - "8888:8888"
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1
+  transmission-openvpn:
     volumes:
       - Plex-nfs:/downloads
+      - "/etc/localtime:/etc/localtime:ro"
     environment:
+      - CREATE_TUN_DEVICE=true
       - OPENVPN_PROVIDER=PIA
+      - OPENVPN_CONFIG=CA Toronto
+      - OPENVPN_USERNAME=
+      - OPENVPN_PASSWORD=
+      - WEBPROXY_ENABLED=false
       - LOCAL_NETWORK=10.0.0.0/24,172.30.224.0/20
-      - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
       - TRANSMISSION_RATIO_LIMIT=0
       - TRANSMISSION_RATIO_LIMIT_ENABLED=true
       - TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=false
       - TRANSMISSION_MAX_PEER_GLOBAL=99999
-      - TRANSMISSION_PEER_LIMIT_GLOBAL=9999
-      - TRANSMISSION_PEER_LIMIT_PER_TORRENT=9999
+        #- TRANSMISSION_PEER_LIMIT_GLOBAL=9999
+        #- TRANSMISSION_PEER_LIMIT_PER_TORRENT=9999
       - TRANSMISSION_DOWNLOAD_DIR=/downloads/Torrent
       - TRANSMISSION_INCOMPLETE_DIR_ENABLED=false
       - TRANSMISSION_WEB_UI=transmission-web-control
-      - OPENVPN_USERNAME=
-      - OPENVPN_PASSWORD=
-      - OPENVPN_CONFIG=
-
+    cap_add:
+      - NET_ADMIN
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+    ports:
+      - "9091:9091"
+    image: haugene/transmission-openvpn:dev
 
 volumes:
   Plex-nfs:

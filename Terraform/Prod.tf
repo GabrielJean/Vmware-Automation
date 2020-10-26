@@ -32,8 +32,6 @@ module "Prometheus" {
 }
 
 
-
-
 module "Rancher" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Rancher"
@@ -44,6 +42,8 @@ module "Rancher" {
   vsphere_virtual_machine_ram = 2048
   vsphere_virtual_machine_cpu = 2
 }
+
+
 module "Bitwarden" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Bitwarden"
@@ -53,4 +53,17 @@ module "Bitwarden" {
   vsphere_virtual_machine_tag = "Docker"
   vsphere_virtual_machine_ram = 3072
   vsphere_virtual_machine_cpu = 2
+}
+
+
+module "Nextcloud" {
+  source = "./modules/Ubuntu 20.04/"
+  vsphere_virtual_machine_name = "Nextcloud"
+  vsphere_virtual_machine_network = "VM-Network"
+  vsphere_virtual_machine_ip = "10.0.0.35"
+  vsphere_virtual_machine_Datastore = "ehq02-DS"
+  vsphere_virtual_machine_tag = "Docker"
+  vsphere_virtual_machine_ram = 1024
+  vsphere_virtual_machine_cpu = 1
+  vsphere_virtual_machine_DiskSize = 60
 }

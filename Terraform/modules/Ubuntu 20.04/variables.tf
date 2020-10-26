@@ -26,6 +26,12 @@ variable "vsphere_virtual_machine_Datastore" {
   type        = string
 }
 
+variable "vsphere_virtual_machine_DiskSize" {
+  description = "Define Virtual Machine Gateway"
+  type        = string
+  default     = "40"
+}
+
 variable "vsphere_virtual_machine_tag" {
   description = "Define ansible group"
   type        = string

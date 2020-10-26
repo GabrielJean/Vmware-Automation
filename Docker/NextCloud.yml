@@ -33,6 +33,8 @@ services:
       - NEXTCLOUD_DATA_DIR=/nc-data
       - NEXTCLOUD_TRUSTED_DOMAIN=nextcloud.gwebs.ca 10.0.0.35 localhost
       # - OVERWRITEPROTOCOL=https
+      - APACHE_DISABLE_REWRITE_IP=1
+      - TRUSTED_PROXIES=10.0.100.30
 
     depends_on:
       - db

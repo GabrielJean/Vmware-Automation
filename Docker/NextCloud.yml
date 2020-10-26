@@ -1,6 +1,7 @@
 version: '2'
 
 volumes:
+  nc-data:
   nextcloud:
   db:
 
@@ -40,4 +41,5 @@ services:
       - db
     volumes:
       - nextcloud:/var/www/html
+      - nc-data:/nc-data
     restart: always

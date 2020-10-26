@@ -29,11 +29,12 @@ services:
       - MYSQL_PASSWORD=Password1
       - MYSQL_HOST=db
       - NEXTCLOUD_ADMIN_USER=ncadmin
-      # - NEXTCLOUD_DATA_DIR=/nc-data
+      - NEXTCLOUD_ADMIN_PASSWORD=Password1
+      - NEXTCLOUD_DATA_DIR=/nc-data
       - NEXTCLOUD_TRUSTED_DOMAIN=nextcloud.gwebs.ca 10.0.0.35 localhost
       # - OVERWRITEPROTOCOL=https
 
-    depends:
+    depends_on:
       - db
     volumes:
       - nextcloud:/var/www/html

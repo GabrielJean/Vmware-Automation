@@ -8,6 +8,6 @@
         dest: ~/Homelab-Automation/
 
     - docker_compose:
-        project_src: ~/Homelab-Automation/Docker
+        project_src: ~/Homelab-Automation/Docker/Rancher
         files: "Rancher.yml"
         state: present

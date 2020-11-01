@@ -1,0 +1,21 @@
+version: '3'
+  
+services:
+  bitwarden:
+    image: bitwardenrs/server
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      - ./bw-data:/data
+    environment:
+      DOMAIN: https://bitwarden.gwebs.ca
+      WEBSOCKET_ENABLED: 'true' # Required to use websockets
+      SIGNUPS_ALLOWED: 'false'   # set to false to disable signups
+      ADMIN_TOKEN: ""
+      SMTP_HOST: smtp-mail.outlook.com
+      SMTP_FROM: 
+      SMTP_PORT: 587
+      SMTP_SSL: "true"
+      SMTP_USERNAME: 
+      SMTP_PASSWORD:

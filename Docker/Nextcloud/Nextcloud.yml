@@ -1,7 +1,6 @@
 version: '2'
 
 volumes:
-  nc-data:
   nextcloud:
   db:
 
@@ -31,7 +30,7 @@ services:
       - MYSQL_HOST=db
       - NEXTCLOUD_ADMIN_USER=ncadmin
       - NEXTCLOUD_ADMIN_PASSWORD=Password1
-      - NEXTCLOUD_DATA_DIR=/nc-data
+      # - NEXTCLOUD_DATA_DIR=/nc-data
       - NEXTCLOUD_TRUSTED_DOMAIN=nextcloud.gwebs.ca 10.0.0.35 localhost
       # - OVERWRITEPROTOCOL=https
       - APACHE_DISABLE_REWRITE_IP=1
@@ -41,5 +40,4 @@ services:
       - db
     volumes:
       - nextcloud:/var/www/html
-      - nc-data:/nc-data
     restart: always

@@ -1,0 +1,13 @@
+- hosts: Nextcloud
+  become: yes
+  tasks:
+    - include_tasks: ./Tasks/docker-install.yml
+
+    - git:
+        repo: https://github.com/GabrielJean/Homelab-Automation.git
+        dest: ~/Homelab-Automation/
+
+    - docker_compose:
+        project_src: ~/Homelab-Automation/Docker/Nextcloud
+        files: "Nextcloud.yml"
+        state: present

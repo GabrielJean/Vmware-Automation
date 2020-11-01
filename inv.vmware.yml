@@ -3,5 +3,5 @@ strict: False
 hostname:
 username:
 password:
-validate_certs:
-with_tags:
+validate_certs: False
+with_tags: True

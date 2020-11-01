@@ -1,4 +1,4 @@
-- hosts: Rancher
+- hosts: Nextcloud
   become: yes
   tasks:
     - include_tasks: ./Tasks/docker-install.yml
@@ -8,6 +8,6 @@
         dest: ~/Homelab-Automation/
 
     - docker_compose:
-        project_src: ~/Homelab-Automation/Docker/Rancher
-        files: "Rancher.yml"
+        project_src: ~/Homelab-Automation/Docker/Nextcloud
+        files: "Nextcloud.yml"
         state: present

@@ -62,8 +62,8 @@ module "Nextcloud" {
   vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.35"
   vsphere_virtual_machine_Datastore = "ehq02-DS"
-  vsphere_virtual_machine_tag = "Docker"
+  vsphere_virtual_machine_tag = "Nextcloud"
   vsphere_virtual_machine_ram = 1024
-  vsphere_virtual_machine_cpu = 1
+  vsphere_virtual_machine_cpu = 2
   vsphere_virtual_machine_DiskSize = 60
 }

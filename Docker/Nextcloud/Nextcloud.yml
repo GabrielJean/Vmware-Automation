@@ -1,0 +1,43 @@
+version: '2'
+
+volumes:
+  nextcloud:
+  db:
+
+services:
+  db:
+    image: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password1
+      - MYSQL_PASSWORD=Password1
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+  app:
+    image: nextcloud
+    ports:
+      - 80:80
+    links:
+      - db
+    environment:
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=Password1
+      - MYSQL_HOST=db
+      - NEXTCLOUD_ADMIN_USER=ncadmin
+      - NEXTCLOUD_ADMIN_PASSWORD=Password1
+      # - NEXTCLOUD_DATA_DIR=/nc-data
+      - NEXTCLOUD_TRUSTED_DOMAIN=nextcloud.gwebs.ca 10.0.0.35 localhost
+      # - OVERWRITEPROTOCOL=https
+      - APACHE_DISABLE_REWRITE_IP=1
+      - TRUSTED_PROXIES=10.0.100.30
+
+    depends_on:
+      - db
+    volumes:
+      - nextcloud:/var/www/html
+    restart: always

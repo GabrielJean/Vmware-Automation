@@ -51,8 +51,8 @@ module "Bitwarden" {
   vsphere_virtual_machine_ip = "10.0.0.31"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
   vsphere_virtual_machine_tag = "Docker"
-  vsphere_virtual_machine_ram = 3072
-  vsphere_virtual_machine_cpu = 2
+  vsphere_virtual_machine_ram = 1024
+  vsphere_virtual_machine_cpu = 1
 }
 
 

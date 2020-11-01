@@ -26,6 +26,7 @@
         user: gabriel
         state: present
         key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEI5MhckCsoXNneD5oNcfPbkXuWLyD7JfivBIcdpDRq/02m0YnWUesZMDiFfbcw7LOf2qzPOvsBktXJuUNI8gPwmLInpmwcVQXZioadDd8DUrn70AQh6eHVWsTrtAu24jDpuHdRnMkocVS8NchXqPFLUtMMgN6g08ANrd3pc/Nai0J1vrpOw0DPn1ld5mjMvSTO34CuYpq2umlJzg8Bja2j6Q5Bpt5P9tvgfNOFOnlbjizppaOf2EUHd+BBT9TWFGtLZZh+A9uSCwL0WoecIuNxR/NiXL0Yi7WrL/RQB0CUhyGjyAvGGiokY+2D1DvpTq2FckZdM64bEC0F/xvGPfPKkIf1y2DS5fGrFbe2/SwjUD0WADxjJtd1l8NsHv9pLg9mEGsMbqImyrIR8nsxVsY8/OHOI3gDHn9BKtnlFdANtHZB/5++ogmnJomaTuvr55DrCQgJh3dcAXUMY1rRLJyLdJjzN0nmC735F6TtSIiPIv6L8qGtVDbjOksSiwgP20=" 
+
     - name: Install a list of packages
       apt:
         pkg:
@@ -34,3 +35,25 @@
         - nmon
         - git
         - prometheus-node-exporter
+        - cloud-guest-utils
+
+    - name: Check that LVM is used
+      stat:
+        path: /dev/mapper/ubuntu--vg-ubuntu--lv
+      register: lvm_check
+
+    - name: Grow partition to real size
+      command: growpart /dev/sda 3 
+      when: lvm_check.stat.exists
+
+    - name: Rezise PV
+      command: pvresize /dev/sda3
+      when: lvm_check.stat.exists
+    
+    - name: Extend LV
+      command: lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv 
+      when: lvm_check.stat.exists
+
+    - name: Grow ext4 partition
+      command: resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+      when: lvm_check.stat.exists

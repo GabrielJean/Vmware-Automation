@@ -1,0 +1,62 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-qqv2d
+    field.cattle.io/ingressState: '{"YzJrLWluZ3Jlc3MvY29tMmt1YmUvY29tMmt1YmUuaW8vL2FwaS81MDAw":"deployment:com2kube:c2k-backend","YzJrLWluZ3Jlc3MvY29tMmt1YmUvY29tMmt1YmUuaW8vLzgw":"deployment:com2kube:c2k-frontend"}'
+    field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.71"],"port":80,"protocol":"HTTP","serviceName":"com2kube:ingress-c9b25ec973f67410496b46abb0eeb07f","ingressName":"com2kube:c2k-ingress","hostname":"com2kube.io","allNodes":true},{"addresses":["10.0.0.71"],"port":80,"protocol":"HTTP","serviceName":"com2kube:ingress-559fd64816d12e9b67ff59efeb99dbc6","ingressName":"com2kube:c2k-ingress","hostname":"com2kube.io","path":"/api","allNodes":true}]'
+  creationTimestamp: "2020-08-23T19:28:15Z"
+  generation: 2
+  labels:
+    cattle.io/creator: norman
+  managedFields:
+  - apiVersion: networking.k8s.io/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:loadBalancer:
+          f:ingress: {}
+    manager: nginx-ingress-controller
+    operation: Update
+    time: "2020-08-23T19:28:32Z"
+  - apiVersion: extensions/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:field.cattle.io/creatorId: {}
+          f:field.cattle.io/ingressState: {}
+          f:field.cattle.io/publicEndpoints: {}
+        f:labels:
+          .: {}
+          f:cattle.io/creator: {}
+      f:spec:
+        f:rules: {}
+    manager: Go-http-client
+    operation: Update
+    time: "2020-08-23T19:29:57Z"
+  name: c2k-ingress
+  namespace: com2kube
+  resourceVersion: "20084"
+  selfLink: /apis/extensions/v1beta1/namespaces/com2kube/ingresses/c2k-ingress
+  uid: 096cf816-17a2-42a2-8276-c46dc7bb7437
+spec:
+  rules:
+  - host: com2kube.io
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-c9b25ec973f67410496b46abb0eeb07f
+          servicePort: 80
+        pathType: ImplementationSpecific
+      - backend:
+          serviceName: ingress-559fd64816d12e9b67ff59efeb99dbc6
+          servicePort: 5000
+        path: /api
+        pathType: ImplementationSpecific
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.0.0.71
+    - ip: 10.0.0.72

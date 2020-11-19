@@ -1,0 +1,345 @@
+﻿apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      field.cattle.io/creatorId: user-qqv2d
+      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.71"],"port":80,"protocol":"HTTP","serviceName":"com2kube:ingress-559fd64816d12e9b67ff59efeb99dbc6","ingressName":"com2kube:c2k-ingress","hostname":"com2kube.io","path":"/api","allNodes":true}]'
+    creationTimestamp: "2020-08-23T19:26:53Z"
+    generation: 5
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-com2kube-c2k-backend
+    managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:field.cattle.io/creatorId: {}
+            f:field.cattle.io/publicEndpoints: {}
+          f:labels:
+            .: {}
+            f:cattle.io/creator: {}
+            f:workload.user.cattle.io/workloadselector: {}
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:replicas: {}
+          f:revisionHistoryLimit: {}
+          f:selector:
+            f:matchLabels:
+              .: {}
+              f:workload.user.cattle.io/workloadselector: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:annotations:
+                .: {}
+                f:cattle.io/timestamp: {}
+              f:labels:
+                .: {}
+                f:workload.user.cattle.io/workloadselector: {}
+            f:spec:
+              f:containers:
+                k:{"name":"c2k-backend"}:
+                  .: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:resources: {}
+                  f:securityContext:
+                    .: {}
+                    f:allowPrivilegeEscalation: {}
+                    f:capabilities: {}
+                    f:privileged: {}
+                    f:readOnlyRootFilesystem: {}
+                    f:runAsNonRoot: {}
+                  f:stdin: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+                  f:tty: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+      manager: Go-http-client
+      operation: Update
+      time: "2020-08-23T19:36:31Z"
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:deployment.kubernetes.io/revision: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      manager: kube-controller-manager
+      operation: Update
+      time: "2020-08-23T19:36:44Z"
+    name: c2k-backend
+    namespace: com2kube
+    resourceVersion: "21655"
+    selfLink: /apis/apps/v1/namespaces/com2kube/deployments/c2k-backend
+    uid: b82ca89a-5c5c-4ee8-8ea6-794446e4a3a3
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-com2kube-c2k-backend
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: "2020-08-23T19:36:31Z"
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-com2kube-c2k-backend
+      spec:
+        containers:
+        - image: gwebs/c2k-back:79a5d8890bf6489b30fc51143c22798ad32d8574
+          imagePullPolicy: Always
+          name: c2k-backend
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2020-08-23T19:34:17Z"
+      lastUpdateTime: "2020-08-23T19:34:17Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2020-08-23T19:26:53Z"
+      lastUpdateTime: "2020-08-23T19:36:44Z"
+      message: ReplicaSet "c2k-backend-66855fdb8" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 5
+    readyReplicas: 2
+    replicas: 2
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      field.cattle.io/creatorId: user-qqv2d
+      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.71"],"port":80,"protocol":"HTTP","serviceName":"com2kube:ingress-c9b25ec973f67410496b46abb0eeb07f","ingressName":"com2kube:c2k-ingress","hostname":"com2kube.io","allNodes":true}]'
+    creationTimestamp: "2020-08-23T19:26:22Z"
+    generation: 4
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-com2kube-c2k-frontend
+    managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:field.cattle.io/creatorId: {}
+            f:field.cattle.io/publicEndpoints: {}
+          f:labels:
+            .: {}
+            f:cattle.io/creator: {}
+            f:workload.user.cattle.io/workloadselector: {}
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:replicas: {}
+          f:revisionHistoryLimit: {}
+          f:selector:
+            f:matchLabels:
+              .: {}
+              f:workload.user.cattle.io/workloadselector: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:annotations:
+                .: {}
+                f:cattle.io/timestamp: {}
+              f:labels:
+                .: {}
+                f:workload.user.cattle.io/workloadselector: {}
+            f:spec:
+              f:containers:
+                k:{"name":"c2k-frontend"}:
+                  .: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:resources: {}
+                  f:securityContext:
+                    .: {}
+                    f:allowPrivilegeEscalation: {}
+                    f:capabilities: {}
+                    f:privileged: {}
+                    f:readOnlyRootFilesystem: {}
+                    f:runAsNonRoot: {}
+                  f:stdin: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+                  f:tty: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+      manager: Go-http-client
+      operation: Update
+      time: "2020-08-23T19:36:06Z"
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:deployment.kubernetes.io/revision: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      manager: kube-controller-manager
+      operation: Update
+      time: "2020-08-23T19:36:10Z"
+    name: c2k-frontend
+    namespace: com2kube
+    resourceVersion: "21491"
+    selfLink: /apis/apps/v1/namespaces/com2kube/deployments/c2k-frontend
+    uid: 633f2dee-c488-48c1-9bd2-2f9e2b490794
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-com2kube-c2k-frontend
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: "2020-08-23T19:36:05Z"
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-com2kube-c2k-frontend
+      spec:
+        containers:
+        - image: gwebs/c2k-front:79a5d8890bf6489b30fc51143c22798ad32d8574
+          imagePullPolicy: Always
+          name: c2k-frontend
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2020-08-23T19:34:10Z"
+      lastUpdateTime: "2020-08-23T19:34:10Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2020-08-23T19:26:22Z"
+      lastUpdateTime: "2020-08-23T19:36:10Z"
+      message: ReplicaSet "c2k-frontend-7d5d7c94b7" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 4
+    readyReplicas: 2
+    replicas: 2
+    updatedReplicas: 2
+kind: List

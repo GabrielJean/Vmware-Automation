@@ -80,5 +80,5 @@ volumes:
   Plex-nfs:
     driver_opts:
       type: "nfs"
-      o: "addr=freenas.ad.gwebs.ca,nolock,soft,rw"
+      o: "addr=truenas.ad.gwebs.ca,nolock,soft,rw"
       device: ":/mnt/Vault/Medias"

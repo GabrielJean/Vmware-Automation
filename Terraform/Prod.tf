@@ -4,7 +4,7 @@ module "Nginx" {
   vsphere_virtual_machine_network = "DMZ"
   vsphere_virtual_machine_ip = "10.0.100.30"
   vsphere_virtual_machine_gw = "10.0.100.1"
-  vsphere_virtual_machine_Datastore = "FreeNAS-DS"
+  vsphere_virtual_machine_Datastore = "TrueNAS-DS"
   vsphere_virtual_machine_tag = "Nginx"
   vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 1
@@ -49,7 +49,7 @@ module "Bitwarden" {
   vsphere_virtual_machine_name = "Bitwarden"
   vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.31"
-  vsphere_virtual_machine_Datastore = "FreeNAS-DS"
+  vsphere_virtual_machine_Datastore = "TrueNAS-DS"
   vsphere_virtual_machine_tag = "Docker"
   vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 1

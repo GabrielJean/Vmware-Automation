@@ -49,7 +49,7 @@ module "Bitwarden" {
   vsphere_virtual_machine_name = "Bitwarden"
   vsphere_virtual_machine_network = "VM-Network"
   vsphere_virtual_machine_ip = "10.0.0.31"
-  vsphere_virtual_machine_Datastore = "ehq01-DS"
+  vsphere_virtual_machine_Datastore = "FreeNAS-DS"
   vsphere_virtual_machine_tag = "Docker"
   vsphere_virtual_machine_ram = 1024
   vsphere_virtual_machine_cpu = 1

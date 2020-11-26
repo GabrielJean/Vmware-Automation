@@ -52,7 +52,8 @@ services:
     environment:
       - CREATE_TUN_DEVICE=true
       - OPENVPN_PROVIDER=PIA
-      - OPENVPN_CONFIG=CA Toronto
+      - PIA_OPENVPN_CONFIG_BUNDLE=openvpn
+      - OPENVPN_CONFIG=ca_montreal
       - OPENVPN_USERNAME=
       - OPENVPN_PASSWORD=
       - WEBPROXY_ENABLED=false

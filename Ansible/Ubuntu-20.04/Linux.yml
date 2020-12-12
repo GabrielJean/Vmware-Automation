@@ -27,6 +27,13 @@
         state: present
         key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEI5MhckCsoXNneD5oNcfPbkXuWLyD7JfivBIcdpDRq/02m0YnWUesZMDiFfbcw7LOf2qzPOvsBktXJuUNI8gPwmLInpmwcVQXZioadDd8DUrn70AQh6eHVWsTrtAu24jDpuHdRnMkocVS8NchXqPFLUtMMgN6g08ANrd3pc/Nai0J1vrpOw0DPn1ld5mjMvSTO34CuYpq2umlJzg8Bja2j6Q5Bpt5P9tvgfNOFOnlbjizppaOf2EUHd+BBT9TWFGtLZZh+A9uSCwL0WoecIuNxR/NiXL0Yi7WrL/RQB0CUhyGjyAvGGiokY+2D1DvpTq2FckZdM64bEC0F/xvGPfPKkIf1y2DS5fGrFbe2/SwjUD0WADxjJtd1l8NsHv9pLg9mEGsMbqImyrIR8nsxVsY8/OHOI3gDHn9BKtnlFdANtHZB/5++ogmnJomaTuvr55DrCQgJh3dcAXUMY1rRLJyLdJjzN0nmC735F6TtSIiPIv6L8qGtVDbjOksSiwgP20=" 
 
+
+    - name: Purge Snap
+      apt:
+        name: snapd
+        state: absent
+        purge: yes
+
     - name: Install a list of packages
       apt:
         pkg:

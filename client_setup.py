@@ -69,10 +69,15 @@ def configure_credentials():
                 line = 'password: ' + password + '\n'
             out_an.write(line)
 
-
+###TODO:
+###     1 - SSH keys
+###     2 - pyhon plugins for vmware
+###
 if __name__ == "__main__":
     if os.geteuid() != 0:
         exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
     is_ansible_installed()
     configure_vmware_module()
     configure_credentials()
+
+

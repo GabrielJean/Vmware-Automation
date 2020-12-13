@@ -2,7 +2,6 @@
 
 import os
 import shutil
-import apt
 import sys
 
 def is_ansible_installed():
@@ -16,18 +15,18 @@ def is_ansible_installed():
             sys.exit()
 
 def configure_vmware_module():
-    present = False
+    enabled = False
     with open("/etc/ansible/ansible.cfg") as in_file:
-        buf = in_file.readlines()
+        content = in_file.readlines()
 
     with open("/etc/ansible/ansible.cfg", "w") as out_file:
-        for line in buf:
+        for line in content:
             if line == "enable_plugins = vmware_vm_inventory\n":
-                print("Already there")
-                present = True
+                print("Module is already enabled in the ansible configuration")
+                enabled = True
                 
-        for line in buf:
-            if present != True:
+        for line in content:
+            if enabled != True:
                 if line == "[inventory]\n":
                     line = line + "enable_plugins = vmware_vm_inventory\n"
             out_file.write(line)
@@ -38,9 +37,42 @@ def configure_credentials():
     if os.path.exists("Terraform/inv.vmware.yml") is False:
         shutil.copyfile("inv.vmware.yml", "Terraform/inv.vmware.yml")
 
-#TODO: ADD CREDENTIALS to files
+    print("Please enter your credentials")
+    host = input("hostname : ")
+    user = input("username : ")
+    password = input("password : ")
+
+    with open("Terraform/provider.tf") as in_tf:
+        content = in_tf.readlines()
+
+    with open("Terraform/provider.tf", "w") as out_tf:
+        for line in content:
+            if '  user           = "' in line:
+                line = '  user           = "' + user + '"\n'
+            if '  password       = "' in line:
+                line = '  password       = "' + password + '"\n'
+            if '  vsphere_server = "' in line:
+                line = '  vsphere_server = "' + host + '"\n'
+            out_tf.write(line)
+
+
+    with open("Terraform/inv.vmware.yml") as in_an:
+        content = in_an.readlines()
+
+    with open("Terraform/inv.vmware.yml", "w") as out_an:
+        for line in content:
+            if 'hostname:' in line:
+                line = 'hostname: ' + host + '\n'
+            if 'username:' in line:
+                line = 'username: ' + user + '\n'
+            if 'password:' in line:
+                line = 'password: ' + password + '\n'
+            out_an.write(line)
+
 
 if __name__ == "__main__":
+    # if os.geteuid() != 0:
+    #     exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
     # is_ansible_installed()
     # configure_vmware_module()
     configure_credentials()

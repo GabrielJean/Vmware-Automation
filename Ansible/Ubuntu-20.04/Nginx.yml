@@ -35,7 +35,7 @@
       with_items: "{{ find.files }}"
 
     - name: Configure HTTPS with certbot
-      command: "certbot --nginx --register-unsafely-without-email --expand --agree-tos --redirect -n --keep -d nextcloud.gwebs.ca -d bitwarden.gwebs.ca -d gabrieljean.com -d com2kube.io"
+      command: "certbot --nginx --register-unsafely-without-email --expand --agree-tos --redirect -n --keep -d nextcloud.gwebs.ca -d bitwarden.gwebs.ca -d gabrieljean.com -d com2kube.com -d marcantoinericard.com"
    
     - set_fact:
         goaccess_service: 'W1VuaXRdCkRlc2NyaXB0aW9uPUdvYWNjZXNzIFdlYiBsb2cgcmVwb3J0LgpBZnRlcj1uZXR3b3JrLnRhcmdldAoKW1NlcnZpY2VdClR5cGU9c2ltcGxlClVzZXI9d3d3LWRhdGEKUmVzdGFydD1hbHdheXMKRXhlY1N0YXJ0PS9iaW4vYmFzaCAtYyAiL3Vzci9iaW4vZ29hY2Nlc3MgL3Zhci9sb2cvbmdpbngvYWNjZXNzLmxvZyogL3Zhci9sb2cvbmdpbngvcmV2ZXJzZS1hY2Nlc3MubG9nKiAtbyAvdmFyL3d3dy9odG1sL2luZGV4Lmh0bWwgLS1sb2ctZm9ybWF0PUNPTUJJTkVEIC0tcmVhbC10aW1lLWh0bWwiClN0YW5kYXJkT3V0cHV0PW51bGwKU3RhbmRhcmRFcnJvcj1udWxsCgpbSW5zdGFsbF0KV2FudGVkQnk9bXVsdGktdXNlci50YXJnZXQ='

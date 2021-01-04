@@ -13,7 +13,7 @@ module "Nginx" {
 module "Torrent" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Torrent"
-  vsphere_virtual_machine_network = "VM-Network"
+  vsphere_virtual_machine_network = "Prod"
   vsphere_virtual_machine_ip = "10.0.0.40"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
   vsphere_virtual_machine_tag = "Docker"
@@ -24,7 +24,7 @@ module "Torrent" {
 module "Prometheus" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Prometheus"
-  vsphere_virtual_machine_network = "VM-Network"
+  vsphere_virtual_machine_network = "Prod"
   vsphere_virtual_machine_ip = "10.0.0.21"
   vsphere_virtual_machine_Datastore = "ehq01-DS"
   vsphere_virtual_machine_ram = 1024
@@ -35,7 +35,7 @@ module "Prometheus" {
 module "Rancher" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Rancher"
-  vsphere_virtual_machine_network = "VM-Network"
+  vsphere_virtual_machine_network = "Prod"
   vsphere_virtual_machine_ip = "10.0.0.70"
   vsphere_virtual_machine_Datastore = "ehq02-DS"
   vsphere_virtual_machine_tag = "Rancher"
@@ -47,7 +47,7 @@ module "Rancher" {
 module "Bitwarden" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Bitwarden"
-  vsphere_virtual_machine_network = "VM-Network"
+  vsphere_virtual_machine_network = "Prod"
   vsphere_virtual_machine_ip = "10.0.0.31"
   vsphere_virtual_machine_Datastore = "TrueNAS-DS"
   vsphere_virtual_machine_tag = "Docker"
@@ -59,7 +59,7 @@ module "Bitwarden" {
 module "Nextcloud" {
   source = "./modules/Ubuntu 20.04/"
   vsphere_virtual_machine_name = "Nextcloud"
-  vsphere_virtual_machine_network = "VM-Network"
+  vsphere_virtual_machine_network = "Prod"
   vsphere_virtual_machine_ip = "10.0.0.35"
   vsphere_virtual_machine_Datastore = "ehq02-DS"
   vsphere_virtual_machine_tag = "Nextcloud"

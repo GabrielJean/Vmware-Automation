@@ -34,6 +34,17 @@
         state: absent
         purge: yes
 
+    - name: Add apt key for github cli
+      apt_key:
+        url: hkp://keyserver.ubuntu.com:80
+        id: C99B11DEB97541F0
+
+    - name: Add Github cli repo into sources list
+      apt_repository:
+        repo: deb https://cli.github.com/packages focal main
+        state: present
+
+
     - name: Install a list of packages
       apt:
         pkg:
@@ -43,6 +54,8 @@
         - git
         - prometheus-node-exporter
         - cloud-guest-utils
+        - gh
+
 
     - name: Check that LVM is used
       stat:

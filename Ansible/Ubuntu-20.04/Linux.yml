@@ -38,12 +38,19 @@
       apt_key:
         url: hkp://keyserver.ubuntu.com:80
         id: C99B11DEB97541F0
+      when: inventory_hostname not in groups['Nginx']
 
     - name: Add Github cli repo into sources list
       apt_repository:
         repo: deb https://cli.github.com/packages focal main
         state: present
+      when: inventory_hostname not in groups['Nginx']
 
+    - name: Install Github Cli
+      apt:
+        pkg:
+        - gh
+      when: inventory_hostname not in groups['Nginx']
 
     - name: Install a list of packages
       apt:
@@ -54,7 +61,7 @@
         - git
         - prometheus-node-exporter
         - cloud-guest-utils
-        - gh
+
 
 
     - name: Check that LVM is used

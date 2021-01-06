@@ -49,6 +49,7 @@ module "Bitwarden" {
   vsphere_virtual_machine_name = "Bitwarden"
   vsphere_virtual_machine_network = "APP"
   vsphere_virtual_machine_ip = "10.0.30.31"
+  vsphere_virtual_machine_gw = "10.0.30.1"
   vsphere_virtual_machine_Datastore = "TrueNAS-DS"
   vsphere_virtual_machine_tag = "Docker"
   vsphere_virtual_machine_ram = 1024
@@ -61,6 +62,7 @@ module "Nextcloud" {
   vsphere_virtual_machine_name = "Nextcloud"
   vsphere_virtual_machine_network = "APP"
   vsphere_virtual_machine_ip = "10.0.30.35"
+  vsphere_virtual_machine_gw = "10.0.100.1"
   vsphere_virtual_machine_Datastore = "ehq02-DS"
   vsphere_virtual_machine_tag = "Nextcloud"
   vsphere_virtual_machine_ram = 1024

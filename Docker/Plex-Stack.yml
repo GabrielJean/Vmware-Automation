@@ -73,6 +73,7 @@ services:
       driver: json-file
       options:
         max-size: 10m
+    restart: unless-stopped
     ports:
       - "9091:9091"
     image: haugene/transmission-openvpn

@@ -10,9 +10,16 @@ def is_ansible_installed():
         rep = input("Ansible is not installed, do you want to install it? (y/n): ")
 
         if rep == "y":
-            os.system("sudo apt install ansible")
+            os.system("sudo apt install -y ansible python3-pip")
         else:
             sys.exit()
+
+
+def configure_python_modules():
+    os.system("pip3 install pyvmomi")
+    os.system("pip3 install --upgrade pip setuptools")
+    os.system("pip3 install --upgrade git+https://github.com/vmware/vsphere-automation-sdk-python.git")
+
 
 def configure_vmware_module():
     enabled = False
@@ -77,7 +84,11 @@ if __name__ == "__main__":
     if os.geteuid() != 0:
         exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
     is_ansible_installed()
+
     configure_vmware_module()
+
+    configure_python_modules()
+    
     configure_credentials()
 
 

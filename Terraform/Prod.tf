@@ -39,7 +39,7 @@ module "Rancher" {
   vsphere_virtual_machine_ip = "10.0.0.70"
   vsphere_virtual_machine_Datastore = "ehq02-DS"
   vsphere_virtual_machine_tag = "Rancher"
-  vsphere_virtual_machine_ram = 2048
+  vsphere_virtual_machine_ram = 3072
   vsphere_virtual_machine_cpu = 2
 }
 

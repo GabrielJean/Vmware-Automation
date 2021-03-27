@@ -8,18 +8,19 @@ provider "vsphere" {
 }
 
 
-# terraform {
-#   backend "azurerm" {
-#     resource_group_name  = "gj-storage-rg"
-#     storage_account_name = "gjstoragehot"
-#     container_name       = "tfstate"
-#     key                  = ""
-#   }
-# }
-
 terraform {
-  backend "kubernetes" {
-    secret_suffix    = "state"
-    load_config_file = true
+  backend "azurerm" {
+    storage_account_name = "gterraform"
+    container_name       = "tfstate"
+    key                  = "prod.terraform.tfstate"
+
+    access_key = ""
   }
 }
+
+# terraform {
+#   backend "kubernetes" {
+#     secret_suffix    = "state"
+#     load_config_file = true
+#   }
+# }

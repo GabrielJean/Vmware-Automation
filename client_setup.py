@@ -31,7 +31,7 @@ def configure_vmware_module():
             if line == "enable_plugins = vmware_vm_inventory\n":
                 print("Module is already enabled in the ansible configuration")
                 enabled = True
-                
+
         for line in content:
             if enabled != True:
                 if line == "[inventory]\n":
@@ -48,6 +48,7 @@ def configure_credentials():
     host = input("hostname : ")
     user = input("username : ")
     password = input("password : ")
+    az_blob_key = input("Azure Blob Key : ")
 
     with open("Terraform/provider.tf") as in_tf:
         content = in_tf.readlines()
@@ -60,6 +61,8 @@ def configure_credentials():
                 line = '  password       = "' + password + '"\n'
             if '  vsphere_server = "' in line:
                 line = '  vsphere_server = "' + host + '"\n'
+            if '    access_key = "' in line:
+                line = '    access_key = "' + az_blob_key + '"\n'
             out_tf.write(line)
 
 
@@ -88,7 +91,7 @@ if __name__ == "__main__":
     configure_vmware_module()
 
     configure_python_modules()
-    
+
     configure_credentials()
 
 

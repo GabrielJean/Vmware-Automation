@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-deployment
+  labels:
+    app: portfolio
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portfolio
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: portfolio
+        tier : frontend
+    spec:
+      containers:
+      - name: portfolio
+        image: gwebs/portfolio
+        ports:
+        - containerPort: 80

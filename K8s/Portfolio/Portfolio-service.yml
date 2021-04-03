@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  portfolio-service
+spec:
+  selector:
+    app:  portfolio
+    tier: frontend
+  ports:
+    - port: 80
+

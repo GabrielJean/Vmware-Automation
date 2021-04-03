@@ -79,6 +79,19 @@ def configure_credentials():
                 line = 'password: ' + password + '\n'
             out_an.write(line)
 
+
+def azure_cli_installation():
+    output = shutil.which("az")
+    if output is None:
+        rep = input("Azure CLI is not installed, do you want to install it? (y/n): ")
+
+        if rep == "y":
+            os.system("curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash")
+        else:
+            sys.exit()
+
+
+
 ###TODO:
 ###     1 - SSH keys
 ###     2 - pyhon plugins for vmware
@@ -87,6 +100,8 @@ if __name__ == "__main__":
     if os.geteuid() != 0:
         exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
     is_ansible_installed()
+
+    azure_cli_installation()
 
     configure_vmware_module()
 

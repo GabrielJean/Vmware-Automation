@@ -1,5 +1,6 @@
 - hosts: Linux
   order: sorted
+  ignore_unreachable: yes
   become: yes
   tasks:
 
@@ -25,7 +26,7 @@
       authorized_key:
         user: gabriel
         state: present
-        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEI5MhckCsoXNneD5oNcfPbkXuWLyD7JfivBIcdpDRq/02m0YnWUesZMDiFfbcw7LOf2qzPOvsBktXJuUNI8gPwmLInpmwcVQXZioadDd8DUrn70AQh6eHVWsTrtAu24jDpuHdRnMkocVS8NchXqPFLUtMMgN6g08ANrd3pc/Nai0J1vrpOw0DPn1ld5mjMvSTO34CuYpq2umlJzg8Bja2j6Q5Bpt5P9tvgfNOFOnlbjizppaOf2EUHd+BBT9TWFGtLZZh+A9uSCwL0WoecIuNxR/NiXL0Yi7WrL/RQB0CUhyGjyAvGGiokY+2D1DvpTq2FckZdM64bEC0F/xvGPfPKkIf1y2DS5fGrFbe2/SwjUD0WADxjJtd1l8NsHv9pLg9mEGsMbqImyrIR8nsxVsY8/OHOI3gDHn9BKtnlFdANtHZB/5++ogmnJomaTuvr55DrCQgJh3dcAXUMY1rRLJyLdJjzN0nmC735F6TtSIiPIv6L8qGtVDbjOksSiwgP20=" 
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEI5MhckCsoXNneD5oNcfPbkXuWLyD7JfivBIcdpDRq/02m0YnWUesZMDiFfbcw7LOf2qzPOvsBktXJuUNI8gPwmLInpmwcVQXZioadDd8DUrn70AQh6eHVWsTrtAu24jDpuHdRnMkocVS8NchXqPFLUtMMgN6g08ANrd3pc/Nai0J1vrpOw0DPn1ld5mjMvSTO34CuYpq2umlJzg8Bja2j6Q5Bpt5P9tvgfNOFOnlbjizppaOf2EUHd+BBT9TWFGtLZZh+A9uSCwL0WoecIuNxR/NiXL0Yi7WrL/RQB0CUhyGjyAvGGiokY+2D1DvpTq2FckZdM64bEC0F/xvGPfPKkIf1y2DS5fGrFbe2/SwjUD0WADxjJtd1l8NsHv9pLg9mEGsMbqImyrIR8nsxVsY8/OHOI3gDHn9BKtnlFdANtHZB/5++ogmnJomaTuvr55DrCQgJh3dcAXUMY1rRLJyLdJjzN0nmC735F6TtSIiPIv6L8qGtVDbjOksSiwgP20="
 
 
     - name: Purge Snap
@@ -35,9 +36,12 @@
         purge: yes
 
     - name: Add apt key for github cli
-      apt_key:
-        url: hkp://keyserver.ubuntu.com:80
+      ansible.builtin.apt_key:
+        keyserver: keyserver.ubuntu.com
         id: C99B11DEB97541F0
+      # apt_key:
+      #   url: hkp://keyserver.ubuntu.com:80
+      #   id: C99B11DEB97541F0
       when: inventory_hostname not in groups['Nginx']
 
     - name: Add Github cli repo into sources list
@@ -70,17 +74,28 @@
       register: lvm_check
 
     - name: Grow partition to real size
-      command: growpart /dev/sda 3 
+      command: growpart /dev/sda 3
       when: lvm_check.stat.exists
+      register: result
+      failed_when: result.rc != 1 and result.rc != 0
+      changed_when: result.rc == 0
 
     - name: Rezise PV
       command: pvresize /dev/sda3
       when: lvm_check.stat.exists
-    
+      register: result
+      changed_when: result.rc == 0
+
     - name: Extend LV
-      command: lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv 
+      command: lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
       when: lvm_check.stat.exists
+      register: result
+      failed_when: result.rc != 5 and result.rc != 0
+      changed_when: result.rc == 0
+
 
     - name: Grow ext4 partition
       command: resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
       when: lvm_check.stat.exists
+      register: result
+      changed_when: result.rc == 0

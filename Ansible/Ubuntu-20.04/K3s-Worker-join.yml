@@ -1,0 +1,6 @@
+- hosts: K3s-Worker-join
+  order: sorted
+  become: yes
+  tasks:
+    - name: K3s Worker Join
+      shell: curl -sfL https://get.k3s.io | K3S_URL=https://10.0.30.51:6443 K3S_TOKEN=SECRET sh -

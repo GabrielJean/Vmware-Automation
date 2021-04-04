@@ -1,0 +1,6 @@
+- hosts: K3s-Master-join
+  order: sorted
+  become: yes
+  tasks:
+    - name: K3s Master Join
+      shell: curl -fL https://get.k3s.io | K3S_TOKEN='SECRET' K3S_URL='https://10.0.30.51:6443' sh -s - server

@@ -2,6 +2,7 @@ data "vsphere_datacenter" "dc" {
   name = "Gwebs-DC"
 }
 
+
 data "vsphere_datastore" "datastore" {
   name          = "${var.vsphere_virtual_machine_Datastore}"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
@@ -33,7 +34,11 @@ resource "vsphere_virtual_machine" "vm" {
 
 
   provisioner "local-exec" {
-    command = "sleep 60 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inv.vmware.yml -u ansible ../Ansible/Ubuntu-20.04/Linux.yml ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml"
+    command = "sleep 60 && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inv.vmware.yml -u ansible ../Ansible/Ubuntu-20.04/Linux.yml || /bin/true"
+  }
+
+  provisioner "local-exec" {
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inv.vmware.yml -u ansible ../Ansible/Ubuntu-20.04/${var.vsphere_virtual_machine_tag}.yml || /bin/true"
   }
 
 
@@ -59,7 +64,7 @@ resource "vsphere_virtual_machine" "vm" {
     label            = "disk0"
     size             = "${var.vsphere_virtual_machine_DiskSize}"
     eagerly_scrub    = "${data.vsphere_virtual_machine.template.disks.0.eagerly_scrub}"
-    thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
+    # thin_provisioned = "${data.vsphere_virtual_machine.template.disks.0.thin_provisioned}"
   }
   cdrom {
     client_device = true
